@@ -1,0 +1,59 @@
+
+
+
+
+
+    .prodectsB{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+margin: 15px;
+padding: 0;
+        box-shadow:0 0.2px 4px rgba(121, 121, 121, 0.726);
+        }
+      
+         .liBanner{
+             min-height: 210px;  
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex: 0 1 15rem;
+            margin: 1rem;
+            text-align: center;
+            padding: 10px;
+            transition: 1s ease-in-out;
+           
+        }
+        .liBanner:hover{
+            box-shadow:0 0.2px 4px rgba(121, 121, 121, 0.726);
+        }
+        
+.img{
+    margin-top: 5px;
+    width: 200px;
+}
+
+        
+        .off{
+            color: green;
+        }
+
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='red' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        color: black;
+    }
+    
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='red' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    }
+
+
+
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      color: black;
+    
+    }
+    

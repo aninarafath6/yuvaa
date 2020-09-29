@@ -1,0 +1,105 @@
+
+
+.ser-btn{
+    color:#ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+}
+.ser-btn:hover{
+    background-color: #ffffff;
+    color: black;
+    outline: none;
+}
+.Navbar{
+    background-color: rgb(43, 42, 42);
+    box-shadow: 0 1px 3px rgb(0, 0,.1);
+}
+.logo{
+    color:#f57224;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cart-count{
+
+    color: #f57224;
+    margin: 2px;
+    
+   
+    padding-left: 9px;
+    padding-right: 9px;
+    text-align: center;
+    display: inline;
+    transition:.3s ease-in-out;
+    cursor: pointer;
+}
+.cartLogo:hover{
+color: #f57224;
+font-size: 25px;
+}
+.cartLogo{
+    transition:.3s ease-in-out;
+    cursor: pointer;
+}
+.serch{
+    width: 60%;
+    border: none;
+    outline: none;
+    box-shadow:0 0.2px 4px rgba(121, 121, 121, 0.438);
+    border-radius:   0px 0px 0px 0px;
+    padding: 2px;
+    border: 1px solid black;
+    border-left: none;
+    border-right: none;
+}
+
+.serchDiv{
+    text-align: center;
+    background-color: #f8f9fa;
+    padding:5px;
+    box-shadow:0 0.2px 4px rgba(121, 121, 121, 0.438);
+    z-index: 2;
+}
+.cartt{
+   
+}
+
+.catogary,.fa-search{
+width: 50px;
+background-color: #ffffff;
+border: none;
+outline: none;
+box-shadow:0 0.2px 4px rgba(121, 121, 121, 0.438);
+border-radius: 5px  0px 0 5px;
+padding: 2px;
+padding-bottom: 2.5px;
+margin-right: 1.5x;
+border: 1px solid black;
+    border-right: none;
+
+}
+.fa-search{
+    padding: 6px;
+    border-radius: 0px  5px 5px 0px;
+    border: 1px solid black;
+    transition: .3s ease-in-out;
+}
+.fa-search:hover{
+   
+    color: #f57224;
+    
+}
+
+.serch::placeholder{
+    color: rgba(0, 0, 0, 0.157);
+}
+.fa-user-circle{
+    margin-right: 5px;
+    transition: .3s ease-in-out;
+    font-size: 18px;
+    
+}
+.fa-user-circle:hover{
+color: #f57224;
+font-size: 25px;
+
+}

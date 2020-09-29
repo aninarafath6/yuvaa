@@ -1,0 +1,82 @@
+  body{
+      background: rgba(255, 255, 255, 0.726);
+  }
+  .container{
+   
+      align-items: center;
+      justify-content: center;
+      min-width: 30%;
+      min-height: 100px;
+      background-color: rgba(255, 255, 255, 0.774);
+      box-shadow:0 0.2px 4px rgba(93, 93, 93, 0.568);
+      margin-top: 15px;
+      border-radius: 15px;
+    
+      
+  }
+  .addForm{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 10px;
+width: 100%;
+flex-wrap: wrap;
+
+  }
+  .addInp{
+     
+      width: 100%;
+      padding: 6px;
+     border-radius:5px;
+     border: none;
+     outline: none;
+     box-shadow:0 0.2px 4px rgba(31, 31, 31, 0.308);
+
+  }
+  .hLabel{
+      font-weight: bold;
+      color: orange;
+      font-size: 25px;
+      margin: 15px;
+      border: 1px solid orange;
+      padding: 8px;
+      border-radius: 6px;
+  }
+  .fileBtn{
+    padding: 15px;
+    color: green;
+  }
+  .fileBtn.fileBtn{
+    padding: 15px;
+    color: green;
+  }
+.submit{
+  background-color: #52b027;;
+  margin-top: 15px;
+  color: #ffff;
+  transition: .3s ease-in-out;
+}
+.submit:focus{
+  background-color: orange;
+
+  margin-top: 15px;
+  color: #ffff;
+}
+@media screen and (max-width: 540px) {
+ .container{
+   width: 350px;
+
+   
+ }
+ .hLabel{
+   font-size: 15px;
+ }
+
+}
+@media screen and (min-width: 500px) {
+  .container{
+    width: 450px;
+
+    
+  }}

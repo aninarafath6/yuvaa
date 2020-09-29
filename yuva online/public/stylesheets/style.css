@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background:linear-gradient(45deg,orange,rgb(139, 91, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background-repeat: no-repeat;
+  color: aliceblue;
+}
+
+a {
+  color: #00B7FF;
+}
