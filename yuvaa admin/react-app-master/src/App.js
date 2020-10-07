@@ -15,6 +15,7 @@ function App() {
      <Router>
      <Hedder/>
      <Route path="/" exact component={Home} />
+     <Route path="/home" exact component={Home} />
      <Route path="/addProdect" component={Add} />
      <Route path="/AllProdects" component={All} />
 

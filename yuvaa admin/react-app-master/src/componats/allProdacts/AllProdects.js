@@ -22,12 +22,39 @@ function AllProdects(props) {
     return (
         <>
 
-
-
-
+{
+    data.length===0?(
+        <>
         
+        
+    <ul className="prodects lazyProd">
+<div className="catName"> 
+               
+               
+                    <h4 className=" lazyH4"> </h4> 
+                    <p className="lazyP"></p> 
+                </div> 
+                <li className="li laziLI">
 
-{isLoading? (
+                </li>
+                <li className="li laziLI">
+
+                </li>
+                <li className="li laziLI">
+
+                </li>
+                <li className="li laziLI">
+
+                </li>
+
+</ul>
+    
+    <ul className="prodects lazyProd"></ul>
+        </>
+
+    ):(
+        <>
+        {isLoading? (
     <>
     <ul className="prodects lazyProd">
 <div className="catName"> 
@@ -85,7 +112,7 @@ function AllProdects(props) {
                                 console.log(prod.id)
                             }
                             <div className="prodect"> 
-                                     <img className=" prodImg" src={prod.img} alt=""/> 
+                            <img className=" prodImg" src={"http://localhost:3001/prodects-images/"+prod._id+".jpg"} alt=""/> 
                                      <div className="prodect-name">{prod.name}</div> 
                                      <div> <span  className="prodect-price">₹{prod.offPrice}</span> <del>₹{prod.canPrice} </del></div> 
                                      <div className="off">Extra{prod.off}</div> 
@@ -110,6 +137,14 @@ function AllProdects(props) {
 </ul> 
             
 )}
+        </>
+    )
+}
+
+
+        
+
+
 
 </>
 

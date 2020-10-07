@@ -1,8 +1,7 @@
 const db = require("../config/connection");
-const collection= require('./collections')
+const collection = require("./collections");
 module.exports = {
   addProdect: (prodect, callback) => {
-  
     db.get()
       .collection(collection.ALLPRODECTS_COLLECTION)
       .insertOne(prodect)
@@ -10,28 +9,36 @@ module.exports = {
         callback(data.ops[0]._id);
       });
   },
-  getAllprodects: (callback) => {
-    db.get()
-      .collection(collection.ALLPRODECTS_COLLECTION)
-      .find({})
-      .toArray((err, data) => {
-        if (err) throw err;
-        callback(data);
-      });
+  getAllprodects: () => {
+    return new Promise(async (resolve, reject) => {
+      let data = await db
+        .get()
+        .collection(collection.ALLPRODECTS_COLLECTION)
+        .find({})
+        .toArray();
+      resolve(data);
+    });
   },
-  searchProdects: (ctlo, callback) => {
-    db.get()
-      .collection(collection.ALLPRODECTS_COLLECTION)
-      .find({ catogary: ctlo })
-      .toArray((err, data) => {
-        callback(data);
-      });
+  searchProdects: (ctlo) => {
+    return new Promise(async (resolve, reject) => {
+      let data = await db
+        .get()
+        .collection(collection.ALLPRODECTS_COLLECTION)
+        .find({ keywords: ctlo })
+        .toArray();
+      resolve(data);
+      reject("err");
+    });
   },
-  homeProdects:(calback)=>{
-    db.get().collection(collection.HOME_PRODECTS).find().toArray((err,data)=>{
-      const prodects =[data];
+  homeProdects: () => {
+    return new Promise(async(resolve,rej)=>{
+      let data = await db.get()
+      .collection(collection.HOME_PRODECTS)
+      .find()
+      .toArray();
+      resolve(data)
 
-      calback(prodects)
     })
+   
   },
 };

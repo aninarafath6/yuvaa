@@ -105,7 +105,7 @@ function Home(props) {
                                  <i className="fa fa-star gray-star" aria-hidden="true"></i> 
                          </div> 
                                      <div className=""> 
-                                         <button className="addToCart">Edit Prodect</button> 
+                                         <button className="addToCart">Add to cart</button> 
                                      </div> 
                                      </div> 
                             </li> 

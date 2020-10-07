@@ -1,19 +1,9 @@
-import React ,{useState} from 'react';
+import React  from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Add.css";
 
 function Add(props) {
-  
-const [data,setData] = useState(0);
-const [itm,setItm] = useState([]);
-    const onHAndilChange=(e)=>{
-        const itm =e.target.value;
-        setData(itm);    
-    }
-    const addKeyWOrd =()=>{
-        setItm([...itm,data])
-
-    }
+ 
 
     return (
         <div>
@@ -26,10 +16,12 @@ const [itm,setItm] = useState([]);
                 <input required name="offPrice"  className="offerPrice addInp" type="number" placeholder="Offer price"/> <br/>
                 <input required name="off"  className="offerPrice addInp" type="text" placeholder="off%"/> <br/>
                 <input required name="catogary"  autoComplete="on" className="addInp" type="text" placeholder="catogary"/> <br/>            
-               <textarea required name="disc" className="addInp"  cols="7" rows="5" placeholder="discription"></textarea>
+               <textarea required name="keywords" id="key" className="addInp"  cols="7" rows="1" placeholder="key words"></textarea>
+               <textarea required name="disc" className="addInp"  cols="3" rows="5" placeholder="discription"></textarea>
                 <div  className="button-wrap">
                    
                     <input  required name="img" className="fileBtn" id="upload" type="file"   />
+                    
                 </div>
                
                  <input  className=" addInp submit" type="submit" value="Add This Prodect"/>
