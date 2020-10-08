@@ -20,6 +20,7 @@
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
+    "@types/express-session": "^1.17.0",
     "nodemon": "^2.0.4"
   }
 }

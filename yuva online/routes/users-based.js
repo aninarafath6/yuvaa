@@ -12,20 +12,19 @@ router.post('/signup',(req,res,next)=>{
 })
 let responseData ={}
 
-router.post('/login',(req,res,next)=>{
+router.post('/login',(req,res)=>{
     user_helpers.doLogin(req.body).then((response)=>{
-        responseData=response;
-    });
-})
-router.get('/login',(req,res,next)=>{
-    if(responseData.status){
-        res.redirect('/');
-  }
-  else{
-    res.redirect('/login');
+        if(response.status){
+            res.redirect('localhost:3000/');
 
-  }
-   
+            req.session.loggedIn = true;
+            req.session.user = response.user;
+
+      }
+      else{
+        res.redirect('http://localhost:3000/Login');
+      }
+    });
 })
 
 

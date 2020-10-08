@@ -51,9 +51,12 @@ router.get("/sPro", (req, res, next) => {
 });
 
 router.get("/home", (req, res, next) => {
+  let user =req.session.user;
+  console.log(user);
+
   prodect_helper.homeProdects().then((data)=>{
       const Data = [data]
-      res.send(Data)
+      res.send({data:Data,user:user})
   });
 });
 

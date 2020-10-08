@@ -18,7 +18,7 @@ function Home(props) {
     // handle error
             console.log(error);
                     })
-            setData(res.data) 
+            setData(res.data.data) 
             setIsLoading(false) 
         }
         fetchData();
