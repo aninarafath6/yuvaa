@@ -54,6 +54,11 @@ flex-wrap: wrap;
   #key{
     margin-bottom:25px;
   }
+  .isHome{
+    margin-left: 0.5rem;
+    color:rgba(77, 74, 74, 0.774) ;
+    padding: 0.1rem;
+  }
 .submit{
   background-color: #52b027;;
   margin-top: 15px;

@@ -14,11 +14,11 @@ var session = require('express-session');
 
 
 var app = express();
+app.use(session({secret:'key',cookie:{maxAge:6000000},resave:false,}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(session({secret:'key',cookie:{maxAge:6000000},resave:false,}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

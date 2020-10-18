@@ -1,8 +1,11 @@
-import React,{useState,useEffect} from 'react'; 
+import React,{useState,useEffect } from 'react';
+import axios from 'axios';
+import {Link} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from 'react-bootstrap';
 import './home.css' ;
 
 // import p1 from './images/1.png'; 
-import axios from 'axios' 
  
 function Home(props) { 
     const  [data, setData] = useState([]); 
@@ -11,24 +14,63 @@ function Home(props) {
        
         const fetchData = async ()=>{
             setIsLoading(true) 
-            const res = await axios.get("http://localhost:3001/home")
+            const res = await axios.get("home")
             .catch(function (error) {
     // handle error
             console.log(error);
                     })
-            setData(res.data) 
+            setData(res.data.data) 
             setIsLoading(false) 
         }
         fetchData();
        
     },[]) 
+    const onDealteProdect =(id)=>{
+       
+        axios.get('delete/'+id).then((res)=>{
+            console.log(res);
+
+        }
+        )
+    }
 
       
-    return(
+    return (
         <>
 
+{
+    data.length===0?(
+        <>
+        
+        
+    <ul className="prodects lazyProd">
+<div className="catName"> 
+               
+               
+                    <h4 className=" lazyH4">0 prodects</h4> 
+                    <p className="lazyP">pls add prodects</p> 
+                </div> 
+                <li className="li laziLI">
 
-{isLoading? (
+                </li>
+                <li className="li laziLI">
+
+                </li>
+                <li className="li laziLI">
+
+                </li>
+                <li className="li laziLI">
+
+                </li>
+
+</ul>
+    
+    <ul className="prodects lazyProd"></ul>
+        </>
+
+    ):(
+        <>
+        {isLoading? (
     <>
     <ul className="prodects lazyProd">
 <div className="catName"> 
@@ -76,26 +118,21 @@ function Home(props) {
 </>
 
 ) :(
-    data.map((item,i)=>{
-        return(
-            <ul className="prodects" key={i}>  
-                <div className="catName"> 
-                {
-                    console.log(item[0].catloName)
-                }
+        
+            <ul className="prodects">  
+            <div className="catName"> 
+              
                
-                    <h3 className="ctry">{item[0].catloName}</h3> 
+                    <h3 className="ctry">TOP OFFER PRODECTS</h3> 
                     <p className="ctryDisc">Inspired by Your Interes</p> 
                 </div> 
+               
                 { 
-                    item.map((prod,ky) => { 
-                        return( 
-                            <li  className="li  " key={prod.id}> 
-                            {
-                                console.log(prod.id)
-                            }
+                    data.map((prod,ky) =>(
+                        <li  className="li  " key={ky}> 
+                           
                             <div className="prodect"> 
-                                     <img className=" prodImg" src={prod.img} alt=""/> 
+                            <img className=" prodImg" src={"http://localhost:3001/prodects-images/"+prod._id+"_0.jpg"} alt=""/> 
                                      <div className="prodect-name">{prod.name}</div> 
                                      <div> <span  className="prodect-price">₹{prod.offPrice}</span> <del>₹{prod.canPrice} </del></div> 
                                      <div className="off">Extra{prod.off}</div> 
@@ -107,27 +144,33 @@ function Home(props) {
                                  <i className="fa fa-star gray-star" aria-hidden="true"></i> 
                          </div> 
                                      <div className=""> 
-                                         <button className="addToCart">Edit Prodect</button> 
+                                         <Link to={'/editProdect/'+prod._id} className="btn btn-info" >Edit Prodect </Link> 
+                                         <Button   className="btn btn-danger mt-2" onClick={()=>onDealteProdect(prod._id)}>Delete Prodect</Button> 
                                      </div> 
                                      </div> 
-                            </li> 
-                        ) 
-                    }) 
-                } 
-                </ul> 
+     </li> 
+                      
+
+                
+                        
+)) 
+} 
+</ul> 
             
-        )
-    })  
-
 )}
-
-
         </>
-       
-
-
     )
- 
+}
+
+
+        
+
+
+
+</>
+
+
+    );
  
 }; 
          

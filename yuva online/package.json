@@ -15,12 +15,14 @@
     "express-session": "^1.17.1",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.1",
     "morgan": "~1.9.1",
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
     "@types/express-session": "^1.17.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "nodemon": "^2.0.4"
   }
 }

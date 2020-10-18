@@ -1,0 +1,155 @@
+.qntySpan,.qntyBtn{
+    font-weight: bold;
+
+
+}
+.cart-Container{
+    margin-top: 2.8rem;
+}
+.pricTraker{
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    color: rgb(184, 184, 184);
+}
+.cartCount{
+    position: absolute;
+    top: 5px;
+    margin-left: 2px;
+   font-size:12px;
+}
+.prodects{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+    border: 1.5px solid rgba(104, 104, 104, 0.171);
+    margin: 15px;
+    box-shadow:0 0.2px 4px rgba(104, 104, 104, 0.431);
+    }
+    .banner-prodects{
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+     .li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        flex: 0 1 15rem;
+        margin: 1rem;
+        /* border: .1rem solid gray; */
+        text-align: center;
+        padding: 10px;
+        transition: .3s ease-in-out;
+        border-bottom: 1.5px solid rgba(104, 104, 104, 0.171);
+        min-height: 370px;
+        
+    }
+    .laziLI{
+        box-shadow:0 0.2px 4px rgba(104, 104, 104, 0.328);
+        display: flex;
+        justify-content: center;
+    }
+    .li:hover{
+        box-shadow:0 0.2px 4px rgba(104, 104, 104, 0.431);
+    }
+    .prodect-image{
+        max-width: 34rem;
+        max-height: 34rem;
+    }
+    .addToCart{
+        color: #ffffff;
+        border: none;
+        outline: none;
+        transition: .3s ease-in-out;
+            background-color: #f57224;
+    }
+    .lazyImg{
+       
+        height: 180px;
+        background-color: rgba(104, 104, 104, 0.075);
+        width: 200px;
+
+       
+    
+    }
+    .laziLI{
+        display: flex;
+        
+        justify-content: center;
+        list-style: none;
+        flex: 0 1 15rem;
+        margin: 1rem;
+        /* border: .1rem solid gray; */
+        text-align: center;
+        padding: 10px;
+        transition: .3s ease-in-out;
+        border-bottom: 1.5px solid rgba(104, 104, 104, 0.171);
+        min-height: 300px;
+    }
+    .prodImg{
+        margin-top: 5px;
+        padding:5px;
+            width: 160px;
+    }
+    .addToCart:hover{
+
+        background-color: #3399cc;
+    }
+    .prodect-price{
+        font-weight: bold;
+    }
+    .prodect-cancill-price{
+        font-weight: normal;
+    }
+    .yellow-star{
+        color: yellow;
+    }
+    .off{
+        color: green;
+
+    }
+    .lazyh6{
+        width: 10px;
+        background-color: #fff;
+    }
+ 
+    .catName{
+        width: 100%;
+        padding: 15px;
+        padding-left: 0;
+        
+        border-bottom: 1.5px solid rgba(104, 104, 104, 0.171);
+       
+    
+    }
+    .lazyH4{
+        width: 15px;
+        background-color:  rgba(104, 104, 104, 0.144);
+        padding: 10px;
+        width: 18rem;
+        margin-left: 5px;
+        width: 10;
+    
+    }
+.lazyP{
+    width: 15px;
+    background-color:  rgba(104, 104, 104, 0.144);
+    padding: 6px;
+    width: 15rem;
+    margin-left: 5px;
+    width: 10;
+}
+    .ctry{
+        padding: 8px;
+        margin: 0;
+        padding-bottom: 0;
+        display: inline;
+    }
+    .ctryDisc{
+        margin-left: 8px;
+        color: gray;
+    }
