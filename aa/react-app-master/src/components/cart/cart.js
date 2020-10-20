@@ -1,7 +1,7 @@
 import React,{useEffect,useState,useRef} from 'react';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Redirect} from "react-router-dom";
+import { Redirect,Link} from "react-router-dom";
 import './cart.css';
 import p1 from './Rectangle.jpg'
 const config={};
@@ -11,6 +11,9 @@ function Cart(props) {
     const [reMount,setRemount] = useState(0);
     const [cartCount,setCartCount] = useState(1);
     const [isLoggin,setIslogin] = useState(true);
+    const [yrp,setYrp] = useState(0); 
+    const [mrp,setMrp] = useState(0); 
+    const [saved,setSaved] = useState(0); 
     const btnRef = useRef()
 
     useEffect(()=>{
@@ -29,6 +32,12 @@ function Cart(props) {
     
   
   })
+  axios.get('priceTracker',config).then((res)=>{
+      setYrp(res.data.YRP);
+      setMrp(res.data.mrp);
+      setSaved(res.data.saved);
+
+  })
 
     },[props.reMountHedder,reMount,cartCount]);
     const qntyChange =(cartId,prodId,count,prdCount)=>{
@@ -38,19 +47,25 @@ function Cart(props) {
             prodId:prodId,
             count:count
         }
-        if(count!== -1&&prdCount!==0){
             axios.post('incQnty',data,config).then((res)=>{
-                setCartCount(cartCount +1)
+                setRemount(reMount +1);
     
-                if (res.status===true) {
-                    setRemount(reMount +1);
+                if (res.removed===true) {
+                    alert("tfg")
                     
                 }
             })
-        }
+        
     }
-    const removeFromCart =(id)=>{
-        axios.get('removeFromCart').then((res)=>{
+    const removeFromCart =(id,prodId)=>{
+        const data = {
+            cartId :id,
+            prodId:prodId,
+        }
+        axios.post('removeFromCart',data).then((res)=>{
+            setRemount(reMount +1);
+            props.data(reMount)
+            console.log(res);
         })
 
     }
@@ -106,17 +121,28 @@ function Cart(props) {
               </div>
               <li  className="li   "> 
                      
-                     <div className="prodect"> 
-                              <img className=" prodImg" src={p1} alt=""/> 
-                              <div className="prodect-name">Tottal Prodect:500</div> 
-                              <div className="prodect-name">Tottal MRP:5000</div> 
-                              <div>Tottal off Price</div> 
-                              <div className="off">You Have Saved:5000</div> 
-                              
-                              <div > 
-                                  <button  className="btn btn-success qntyBtn mr-2 ">Place Order</button> 
-                              </div> 
-                              </div> 
+                   
+
+
+                              <div className="prodect">
+                    <div className="img-wrapper">
+                    <img className=" prodImgInCart" src={p1} alt=""/> 
+                      </div>
+                      <div className="detials-wrapper">
+                     <div className="">
+                     <div className="prodect-name">TOTTAL PRODECT:<span  className="prodect-price">{cartCount}</span></div> 
+                     <div className="prodect-name">TOTTAL MRP PRICE:<span  className="prodect-price">Rs.₹{mrp}</span></div> 
+
+                     <div>TOTTAL OFF PRICE:<span  className="prodect-price">Rs.₹{yrp}</span></div> 
+                     <div className="off">You Have Saved:<span  className="prodect-price">Rs.₹{saved}</span></div> 
+       
+                      <div className="addTocartBtn">
+                      <Link to="/PlaceOrder" className="btn addTocart btn-success">PLACE ORDER</Link> 
+
+                      </div>
+                     </div>
+                      </div>
+                    </div>
                      </li> 
 {
     
@@ -126,46 +152,29 @@ function Cart(props) {
                      
                        <div className="prodect"> 
                      
-                      
-                          <img className=" prodImg" src={"http://localhost:3001/prodects-images/"+prod.prodect._id+"_0.jpg"} alt=""/> 
-                                <div className="prodect-name">{prod.prodect.name}</div> 
+                       <div className="img-wrapper">
+
+                          <img className="prodImginCart" src={"http://localhost:3001/prodects-images/"+prod.prodect._id+"_0.jpg"} alt=""/> 
+                          </div>
+                          <div className="detials-wrapper">
+
+                          <div>
+                          <div className="prodect-name">{prod.prodect.name}</div> 
                                 <div> <span  className="prodect-price">₹{prod.prodect.offPrice}</span> <del>₹{prod.prodect.canPrice} </del></div> 
                                 <div className="off">Extra{prod.prodect.off}</div> 
-                                <div className="stars"> 
-                    <i className="fa fa-star yellow-star" aria-hidden="true"></i> 
-                    <i className="fa fa-star yellow-star" aria-hidden="true"></i> 
-                    <i className="fa fa-star yellow-star" aria-hidden="true"></i> 
-                        <i className="fa fa-star yellow-star" aria-hidden="true"></i> 
-                            <i className="fa fa-star gray-star" aria-hidden="true"></i> 
-                    </div>
+                               
 
                         
                                 <div > 
-                                    {
-                                        prod.qnty >1?(
-                                            <>                                 
-                                               <button onClick={()=>qntyChange(prod._id,prod.prodect._id,"+1",prod.qnty)}  className="btn btn-success qntyBtn mr-2 ">+</button>  
+                                <button onClick={()=>qntyChange(prod._id,prod.prodect._id,"+1",prod.qnty)}  className="btn btn-success qntyBtnplus mr-2 ">+</button>  
                                                 <span className="qntySpan">{prod.qnty}</span>
-                                   <button  ref={btnRef} onClick={()=>qntyChange(prod._id,prod.prodect._id,"-1",prod.qnty)} className="btn ml-2 qntyBtn btn-success mr-2">-</button>  
-
-
-
-                                            </>
-                                        ):(
-                                            <>                                 
-                                               <button onClick={()=>qntyChange(prod._id,prod.prodect._id,"+1")}  className="btn btn-success qntyBtn mr-2 ">+</button>                                     <span className="qntySpan">{prod.qnty}</span>
-                                   <button disabled="true" ref={btnRef}  className="btn ml-2 qntyBtn btn-success mr-2">-</button>  
-
-
-
-                                            </>
-                                        )
-
-                                    }
+                                   <button   onClick={()=>qntyChange(prod._id,prod.prodect._id,"-1",prod.qnty)} className="btn ml-2 qntyBtnminus btn-success mr-2">-</button>  
                                    
-                                    <button  onClick={()=>(removeFromCart(prod._id,prod.prodect._id))} className="btn btn-danger ">remove</button> 
+                                    <button  onClick={()=>(removeFromCart(prod._id,prod.prodect._id))} className="btn btn-danger qntyBtnRmv">remove</button> 
                                 </div> 
                                 </div> 
+                          </div>
+                                </div>
                        </li> 
                    ) 
                }) 

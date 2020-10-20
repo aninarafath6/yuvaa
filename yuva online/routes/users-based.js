@@ -37,7 +37,6 @@ router.get("/addTocart/:id", validUser, (req, res) => {
 });
 
 router.get("/cart", validUser, (req, res) => {
-console.log(req.headers.authorazation);
   tokendecoded(req.headers.authorazation).then(async (userData) => {
   user_helpers.getCartProdect(userData.id).then((cart)=>{
     user_helpers.getCartCount(userData.id).then((cartCount)=>{
@@ -52,8 +51,8 @@ console.log(req.headers.authorazation);
 
 
 router.post('/incQnty',(req,res)=>{
-  user_helpers.qntyIncrymentAnddecriment(req.body).then(()=>{
-    res.send({status:true})
+  user_helpers.qntyIncrymentAnddecriment(req.body).then((response)=>{
+    res.send({status:true,removed:response.removed})
   })
 
 })
@@ -67,11 +66,18 @@ router.get("/usereHdder", (req, res, next) => {
   } else {
   
     tokendecoded(req.headers.authorazation).then(async (userData) => {
-      user_helpers.getCartCount(userData.id).then((cartCount)=>{
-        console.log(cartCount);
-        res.send({ user: userData,cartCount:cartCount });
 
-      })
+      if(userData ==undefined){
+console.log("wdsad");
+        res.send({ user: false });
+
+      }else{
+        user_helpers.getCartCount(userData.id).then((cartCount)=>{
+          console.log(cartCount);
+          res.send({ user: userData,cartCount:cartCount });
+  
+        })
+      }
     
     })
     
@@ -83,6 +89,18 @@ router.get("/usereHdder", (req, res, next) => {
 router.post('/removeFromCart',(req,res)=>{
   user_helpers.removeFromCart(req.body).then((rseponse)=>{
     res.send({status:true,rseponse:rseponse})
+  })
+
+})
+router.get('/priceTracker',validUser,(req,res)=>{
+  tokendecoded(req.headers.authorazation).then((userData)=>{
+    user_helpers.priceTracker(userData.id).then((response)=>{
+      let saved = response.totalMRP-response.totalOffPrice ;
+      console.log(saved);
+      res.send({status:true,YRP:response.totalOffPrice,mrp:response.totalMRP,saved:saved})
+
+    })
+
   })
 
 })

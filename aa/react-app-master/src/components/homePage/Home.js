@@ -95,7 +95,7 @@ function Home(props) {
                   <li className="li  " key={ky}>
                   <div className="prodect">
                     <div className="img-wrapper">
-                      <img className=" prodImg" src={"http://localhost:3001/prodects-images/"+prod._id+"_3.jpg"} alt="" />
+                      <img className=" prodImginHome" src={"http://localhost:3001/prodects-images/"+prod._id+"_0.jpg"} alt="" />
                       </div>
                       <div className="detials-wrapper">
                      <div className="">

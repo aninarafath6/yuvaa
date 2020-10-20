@@ -10,8 +10,8 @@ router.post("/addProdects", (req, res, next) => {
   const splittedKeywords = unsplittedKeywords.split(",");
   const data = {
     name: req.body.name,
-    canPrice: req.body.canPrice,
-    offPrice: req.body.offPrice,
+    canPrice: parseInt(req.body.canPrice),
+    offPrice: parseInt(req.body.offPrice),
     off: req.body.off,
     catogary: req.body.catogary,
     keywords: splittedKeywords,

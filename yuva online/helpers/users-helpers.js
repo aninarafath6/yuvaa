@@ -137,16 +137,25 @@ return new Promise(async(resolve,reject)=>{
     resolve(count)
 })
     },
-    qntyIncrymentAnddecriment:(data)=>{
+    qntyIncrymentAnddecriment:async(data)=>{
         let count = parseInt(data.count)
-    return new Promise(async(resolve,reject)=>{
-        let qnty = await db.get().collection(collection.CART_COLLECTION).findOne({_id:ObjectId(data.cartId),'prodects.item':ObjectId(data.prodId)})
+        let qqnty = await db.get().collection(collection.CART_COLLECTION).findOne({_id:ObjectId(data.cartId),'prodects.item':ObjectId(data.prodId)})
 
-      if (qnty.prodects.qnty===1&&count===-1) {
-          console.log("inside");
-          resolve()
-          
+    return new Promise((resolve,reject)=>{
+      if (qqnty.prodects[0].qnty==1 && count==-1) {
+        db.get().collection(collection.CART_COLLECTION).updateOne(
+            {
+                _id:ObjectId(data.cartId)
+         },
+         {
+            $pull:{prodects:{item:ObjectId(data.prodId)}}
+        }
+        ).then((response)=>{
+            console.log(response);
+            resolve({removed:true})
+        })          
       }
+       else{
         db.get().collection(collection.CART_COLLECTION).updateOne(
 
             {_id:ObjectId(data.cartId),'prodects.item':ObjectId(data.prodId)
@@ -155,20 +164,77 @@ return new Promise(async(resolve,reject)=>{
                  $inc:{'prodects.$.qnty':count}
             }
         ).then((res)=>{
-            resolve()
+            resolve({removed:false})
         })
+       }
       
     })
 
     },
-    // removeFromCart:({cartId,prodId})=>{
-    //     return  new Promise((resolve,reject)=>{
-    //         db.get().collection(collection.CART_COLLECTION).removeOne({_id:ObjectId(cartId)},'prodects.item':ObjectId(prodId)}).then((response)=>{
-    //             resolve(response)
-    //         })
+    removeFromCart:({cartId,prodId})=>{
+       return new Promise((resolve,reject)=>{
+           db.get().collection(collection.CART_COLLECTION).updateOne(
+               {
+                   _id:ObjectId(cartId)
+            },
+            {
+               $pull:{prodects:{item:ObjectId(prodId)}}
+           }
+           ).then((response)=>{
+               console.log(response);
+               resolve(response)
+           })
+       })
+    },
+    priceTracker:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let cart = await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
+            console.log(cart);
+            if(cart.prodects.length!==0){
+                let priceTracker = await db.get().collection(collections.CART_COLLECTION).aggregate([
+                    {
+                        $match:{user:ObjectId(userId)}
+                    },
+                    {
+                        $unwind:'$prodects'//cheuk pls
+                    },
+                    {
+                        $project:{
+                            item:'$prodects.item',
+                            qnty:'$prodects.qnty'
+                        }
+                    },
+                    {
+                        $lookup:{
+                            from:collection.ALLPRODECTS_COLLECTION,
+                            localField:'item',
+                            foreignField:'_id',
+                            as:'prodect'
+    
+                        }
+    
+                    },{
+                        $project:{item:1,qnty:1,prodect:{$arrayElemAt:['$prodect',0]}}
+                    },
+                    {
+                        $group:{
+                            _id:null,
+                            totalOffPrice:{$sum:{$multiply:['$qnty','$prodect.offPrice']}},
+                            totalMRP:{$sum:{$multiply:['$qnty','$prodect.canPrice']}},
+                        }
+                    }
+                ]).toArray()
+                    console.log(priceTracker);
+                    resolve(priceTracker[0])
+            
 
-    //     })
-    //}
+            }else{
+                resolve({totalOffPrice:null,totalMRP:null})
+            }
+           
+              
+        })
+    }
 
 
 }

@@ -66,8 +66,8 @@ module.exports = {
       db.get().collection(collection.ALLPRODECTS_COLLECTION).updateOne({_id:ObjectId(id)},{
         $set:{
           name: proDetials.name,
-          canPrice: proDetials.canPrice,
-          offPrice: proDetials.offPrice,
+          canPrice: parseInt(proDetials.canPrice),
+          offPrice:  parseInt(proDetials.offPrice),
           off: proDetials.off,
           catogary: proDetials.catogary,
           keywords: splittedKeywords,

@@ -1,0 +1,122 @@
+*{
+    box-sizing: border-box;
+}
+.display-flex{
+    display:flex;
+    flex-direction:row;
+}
+
+.Place_order{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+
+}
+.deliveryAdress{
+    color: #28a745;
+
+}
+.accordian{
+    width:55%
+}
+.addressWrapper{
+    padding: 1rem;
+
+    width: 100%;
+    box-shadow:0 0.2px 4px rgba(104, 104, 104, 0.431);
+}
+.addressForm{
+    width: 50%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.width-full{
+width: 98%;
+position: relative;
+margin-top: 12px;
+
+}
+.city{
+    position: relative;
+}
+.cityLabel{
+    position: absolute;
+    z-index: 1;
+    top: 1.1rem;
+    left: 0rem;
+
+    font-size: 13px;
+    margin-left: 6px;
+    transition: 0.3s cubic-bezier(0.38, 0.02, 0.69, 0.99);
+    color:rgba(89, 89, 89, 0.652) ;
+    background-color: #ffffff;
+}
+.b{
+
+transform: translateX(-5000rem);
+transition: 1s ease-in-out;
+}
+.state{
+    display: flex;
+    flex-direction: row;
+}
+.width-half{
+    width: 50%;
+}
+.adressInp{
+    border-radius:5px;
+    padding: 5px;
+    outline: none;
+    border: .5px solid rgba(114, 114, 114, 0.296);
+    font-size: 13px;
+    background-color: #fff;
+
+}
+.adressLabel{
+    color:rgba(89, 89, 89, 0.652) ;
+    background-color: #ffffff;
+}
+.adressLabel{
+    position: absolute;
+    left: 0;
+    top: 1.1rem;
+    z-index: 1;
+    font-size: 13px;
+    margin-left: 6px;
+    transition: 0.3s cubic-bezier(0.38, 0.02, 0.69, 0.99);
+}
+.width-full input:focus ~ .adressLabel,
+.width-full input:valid ~ .adressLabel{
+    color: rebeccapurple;
+    position:absolute;
+    top: 1px;
+
+}
+.state .width-half input:focus ~ .adressLabel,
+.state .width-half input:valid ~ .adressLabel{
+    color: rebeccapurple;
+    position:absolute;
+    top: 1px;
+
+}
+.adressInp:focus{
+    background-color: #fff;
+}
+
+
+@media (max-width: 800px) {
+        .addressForm{
+        width: 96%;
+            
+            }
+}
+
+
+

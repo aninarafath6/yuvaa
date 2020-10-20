@@ -1,6 +1,68 @@
 .qntySpan,.qntyBtn{
-    font-weight: bold;
+   
 
+}
+.qntySpan{
+    font-weight: bold;
+    position: absolute;
+    left: 37.5%;
+    bottom: .8rem;
+    transform: translate(-50%); 
+}
+.qntyBtnplus{
+    font-weight: bold;
+    position: absolute;
+    left: 25%;
+    bottom: .5rem;
+    transform: translate(-50%);
+}
+.qntyBtnminus{
+    font-weight: bold;
+    position: absolute;
+    left: 45%;
+    bottom: .5rem;
+    transform: translate(-50%);
+}
+.qntyBtnRmv{
+    font-weight: bold;
+    position: absolute;
+    left: 75%;
+    bottom: .5rem;
+    transform: translate(-50%);
+}
+.addTocartBtn{
+   
+    width:100%;
+    
+    }
+    .addTocart{
+        width: 85%;
+    }
+    .detials-wrapper{
+        height: 45%;
+        width:15rem;
+        position: absolute;
+        transform: translate(-50%);
+        bottom: 0;
+    
+    }
+    .img-wrapper{
+        height: 50%;
+        position: absolute;
+        transform: translate(-50%);
+        top:1rem;
+        width:100%;
+    }
+    .prodImginCart{
+        height: 100%;
+        width: 210px;
+        object-fit:cover;
+    
+    }
+.prodImgInCart{
+    height: 100%;
+    width: 210px;
+    object-fit:cover;
 
 }
 .cart-Container{

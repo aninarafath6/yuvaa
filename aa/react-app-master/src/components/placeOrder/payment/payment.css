@@ -1,0 +1,32 @@
+.paymenForm{
+    width: 25%;
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.179);
+    box-shadow:0 0.2px 4px rgba(104, 104, 104, 0.431);
+    border-radius: 0.9rem;
+    padding-bottom: 3.2rem;
+
+}
+.ptagPayment{
+    color: #2189cf;
+
+}
+.paymentWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.paymentLabel{
+    margin-left: .1rem;
+}
+.checkoutWrapper{
+    width:100%;
+    display: flex;
+position: relative;
+}
+.btnCheckout{
+    position: absolute;
+    right: 4px;
+}

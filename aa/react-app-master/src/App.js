@@ -7,7 +7,9 @@ import Footer from './components/footer/Footer';
 import Prodects from './components/prodects/Prodects';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
-import Cart from  './components/cart/cart'
+import Cart from  './components/cart/cart';
+import PlsceOrder from  './components/placeOrder/Place_order';
+import Payment from  './components/placeOrder/payment/Peyment';
 import './prodects.css' 
 
 
@@ -17,6 +19,7 @@ function App(props) {
     const [reMountHedder,setHeMountHedder]=useState(2)
     const [reMountHedderr,setHeMountHedderr]=useState(2)
     const [logoutCount,setlogoutCount]=useState("")
+    const [adderss,setAddress]=useState()
     const  getPdata=(itm)=>{
 
       setPdata(itm);
@@ -33,12 +36,19 @@ console.log(pData);
     
       console.log( "h "+reMountHedderr);
     }
+    const removeitemFromCart =(item)=>{
+      setHeMountHedderr(item +1)        
+
+    }
     const onLogut =(count)=>{
       setlogoutCount(count)
     }
     
 
-    
+    const addressfunc =(item)=>{
+      setAddress(item)
+
+    }
   return (
     <div className="App">
    
@@ -70,7 +80,13 @@ console.log(pData);
       <Signup/>
      </Route>
      <Route path="/cart"   >
-      <Cart  reMountHedder={reMountHedder}/>
+      <Cart  data={removeitemFromCart}/>
+     </Route>
+     <Route  path="/PlaceOrder"   >
+      <PlsceOrder  data={addressfunc}/>
+     </Route>
+     <Route path="/Payment"   >
+      <Payment data={adderss} />
      </Route>
   
     
