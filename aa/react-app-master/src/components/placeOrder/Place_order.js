@@ -7,23 +7,35 @@ import {Navbar,Nav,NavDropdown,FormControl,Form,Accordion,Card} from 'react-boot
 
 
 const Place_order=(props)=>{
-  const [fullName,setFullName] = useState();
-  const [phoneNumber,setPhoneNumber] = useState();
-  const [houseNo,setHouseNo] = useState();
-  const [road,setRoad] = useState();
-  const [landmark,setLandmark] = useState();
-  const [state,setState] = useState();
-  const [city,setCity] = useState();
-  const [pincode,setPincode] = useState();
+  const [total,setTotal] = useState(0);
+  const [fullName,setFullName] = useState('');
+  const [phoneNumber,setPhoneNumber] = useState(0);
+  const [houseNo,setHouseNo] = useState(0);
+  const [road,setRoad] = useState('');
+  const [landmark,setLandmark] = useState('');
+  const [state,setState] = useState('');
+  const [city,setCity] = useState('');
+  const [pincode,setPincode] = useState(0);
+  const [payment,setPayment] = useState('');
+const addressRef =useRef()
+const paymentRef =useRef()
 const formRef =useRef()
-const onOrderFormSubmitHandiler =(e)=>{
-e.preventDefault();
 let token =localStorage.getItem("token")
 const config={};
 if (token!==null){
  config.headers={ authorazation: "Bearer " + token};
 
 }
+useEffect(()=>{
+  axios.get('priceTracker',config).then((res)=>{
+    setTotal(res.data.YRP);
+   
+
+})
+})
+const onOrderFormSubmitHandiler =(e)=>{
+e.preventDefault();
+
 const address ={
   name:fullName,
   mobile:phoneNumber,
@@ -32,22 +44,31 @@ const address ={
   landmark:landmark,
   state:state,
   city:city,
-  pincode:pincode
+  pincode:pincode,
+  payment:payment
 
 }
 
+axios.post('place-order',address,config).then((res)=>{
+  console.log(res);
+})
 
 }
   
 const toAddressHandiler =()=>{
-formRef.current.classList.add('b')
+  addressRef.current.classList.add('hideAdrssForm')
+    paymentRef.current.classList.add('vewPaymet')
+
 
 }
 
+
+
+
     return(
         <div className="Place_order container">
-  <form   action="" method="post"  onSubmit={onOrderFormSubmitHandiler} className="addressForm">
-       <div ref={formRef}  id="addressWrapper" className="addressWrapper">
+  <form  ref={formRef} action="" method="post"  onSubmit={onOrderFormSubmitHandiler} className="addressForm ">
+       <div ref={addressRef}  id="addressWrapper" className="addressWrapper ">
        <h3 className="deliveryAdress" >DELIVERY ADDRESS</h3>
             <div className="width-full">
                 <input onChange={e=>setFullName(e.target.value)} required  type="text" name="fullName" id="fullName"  className="width-full adressInp"/>
@@ -93,7 +114,43 @@ formRef.current.classList.add('b')
               </div>
               <Link  onClick={toAddressHandiler} className="btn btn-success  width-full" >CONTINEU</Link> 
        </div>
-               <div className="payment">
+               <div ref={paymentRef} className="payment  d">
+
+               <h4>TOTAL AMOUNT:Rs.₹{total}</h4>
+               <hr/>
+               <p className="choosePayment">Choose Payment Option</p>
+             <div className="pey">
+             <div className="flex">
+             <input onChange={e=>setPayment(e.target.value)} value="cod" type="radio" name="paymentMd" id="cod"/>
+               <label className="pLabel" htmlFor="cod">COD</label>
+             </div>
+             <div className="flex">
+               
+             <input onChange={e=>setPayment(e.target.value)} value="pytm" type="radio" name="paymentMd" id="PAYTM"/>
+               <label className="pLabel" htmlFor="PAYTM">PAYTM</label>
+             </div>
+             <div className="flex">
+               
+             <input onChange={e=>setPayment(e.target.value)} value="ponePay" type="radio" name="paymentMd" id="phonePay"/>
+               <label className="pLabel" htmlFor="phonePay">PONE PAY</label>
+             </div>
+             <div className="flex">
+             <input onChange={e=>setPayment(e.target.value)}  value="gPay" type="radio" name="paymentMd" id="gPay"/>
+               <label className="pLabel" htmlFor="gPay">G PAY</label>
+             </div>
+             
+             
+             </div>
+             <div className="width-full">
+               <button className="btn btn-success back-btn">
+               BACK
+
+               </button>
+               <button type="submit" className="btn btn-success checkout-btn">
+               CHECKOUT
+
+               </button>
+             </div>
 
                </div>
             </form>

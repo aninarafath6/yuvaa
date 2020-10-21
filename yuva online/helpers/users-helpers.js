@@ -234,6 +234,37 @@ return new Promise(async(resolve,reject)=>{
            
               
         })
+    },
+    getProdetList:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let cart = await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)});
+            resolve(cart.prodects)
+        })
+    },
+    placeOrder:(order,cart,total,userId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log(order,cart,total,userId);
+            let status =order.payment==='cod'?'placed':'pending';
+    
+
+            let orderObj={
+                deliveryDetails:order,
+                userId:ObjectId(userId),
+                paymentMethod:order.payment,
+                prodects:cart,
+                total:total,
+                date:new Date(),
+                status:status
+
+          }
+          db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
+              db.get().collection(collection.CART_COLLECTION).removeOne({user:ObjectId(userId)})
+              resolve()
+              console.log(response);
+          })
+
+            })
+
     }
 
 

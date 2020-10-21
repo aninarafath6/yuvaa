@@ -4,6 +4,7 @@ const user_helpers = require("../helpers/users-helpers");
 var jwt = require("jsonwebtoken");
 var validUser = require("../helpers/valid-user");
 var tokendecoded = require("../helpers/tokendecoded");
+const usersHelpers = require("../helpers/users-helpers");
 
 router.post("/signup", (req, res, next) => {
   console.log("st");
@@ -103,6 +104,17 @@ router.get('/priceTracker',validUser,(req,res)=>{
 
   })
 
+})
+
+router.post('/place-order',validUser, async(req,res)=>{
+  tokendecoded(req.headers.authorazation).then(async(userData)=>{
+    let Prodects = await usersHelpers.getProdetList(userData.id);
+    let total = await usersHelpers.priceTracker(userData.id)
+    usersHelpers.placeOrder(req.body,Prodects,total.totalOffPrice,userData.id).then((data)=>{
+res.json({status:true})
+    })
+  })
+  console.log(req.body);
 })
 
 module.exports = router;
